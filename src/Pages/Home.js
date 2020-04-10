@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import {Container, Input, Row, Button, Thumbnail} from 'native-base'
-import {ImageBackground, View, Text, StyleSheet} from 'react-native'
+import {Container, Input, Row, Button, Thumbnail, Header, Title, Icon, Left, Right, Body} from 'native-base'
+import {ImageBackground, View, Text, StyleSheet, } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Foundation from 'react-native-vector-icons/Foundation'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Feather from 'react-native-vector-icons/Feather'
 import {createStackNavigator} from '@react-navigation/stack'
 const Stack = createStackNavigator()
 
@@ -15,7 +16,7 @@ const Style = StyleSheet.create({
     borderRadius: 8,
   },
   HomeDesc:{
-    height: 310,
+    height: 380,
     backgroundColor: 'white',
     shadowColor: "#000",
     shadowOffset: {
@@ -47,9 +48,8 @@ const Style = StyleSheet.create({
     
   },
   Profile: {
-    flexDirection: "row", 
     alignItems: "center", 
-    height:70, 
+    height:110,
     backgroundColor:'#3498db', 
     borderTopEndRadius: 20,
     borderTopLeftRadius: 20, 
@@ -63,6 +63,16 @@ const Style = StyleSheet.create({
     shadowRadius: 8.30,
     elevation: 5,
     marginBottom: 15,
+  },
+  ProfileDesc: {
+    flex: 1,
+    flexDirection: "row", 
+    alignItems: "center", 
+    justifyContent: "space-evenly",
+    height:100, 
+    backgroundColor:'#3490db',
+    borderRadius: 10,
+    width: '100%'
   }
 })
 
@@ -73,6 +83,14 @@ const Styles = (iconColor) => StyleSheet.create({
     borderRadius:50,
     justifyContent: "center",
     backgroundColor : iconColor
+  },
+  TopButtonIcon: {
+    height: 50,
+    width: 50,
+    justifyContent: "center",
+    backgroundColor : 'rgba(0,0,0,0)',
+    elevation: 0,
+    flexDirection: 'column'
   }
 })
 
@@ -81,7 +99,7 @@ export default class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      balance: 150
+      balance: 150000
     }
     
   }
@@ -92,19 +110,53 @@ export default class Home extends Component {
       <>
 
         <Container style={Style.HomeContainer}>
+          <Header>
+            <Left>
+              <Thumbnail small source={require('../Assets/Images/person1.jpg')} />
+            </Left>
+            <Body>
+              <Title>Audy</Title>
+            </Body>
+            <Right>
+              <Button transparent>
+                <Icon name='search' />
+              </Button>
+              <Button transparent>
+                <Icon name='heart' />
+              </Button>
+              <Button transparent>
+                <Icon name='more' />
+              </Button>
+            </Right>
+          </Header>
           <View style={Style.HomeDesc}>
             {/* <ImageBackground style={{flex:1}} source={require ('../Assets/Images/973.jpg')} > */}
+
                 <View style={Style.Profile}>
-                  <View>
-                    <Text>Balance</Text>
-                    <Text>Rp{(this.state.balance).toFixed(3)}</Text>
+                  <View style={{ paddingHorizontal: 20 ,height:40, width: '100%', alignItems: 'center', justifyContent: "space-between", flexDirection:'row'}}>
+                    <Text style={{textAlign: 'center', marginTop: 7, color: 'white'}}>Balance</Text>
+                    <Text style={{textAlign: 'center', marginTop: 7, color: 'white'}}>Rp {this.state.balance}</Text>
                   </View>
-                  <Thumbnail source={require('../Assets/Images/person1.jpg')} />
-                  <View style= {{justifyContent: "space-around"}}>
-                    <Text style={{marginLeft: 10, marginBottom: 3, color:'white'}}>Audy</Text>
-                    <Text style={{marginLeft: 10, marginBottom: 3, color:'white'}}>Balance: Rp250.000</Text>
-                    <Text style={{marginLeft: 5, marginBottom: 3, color:'white'}}> <MaterialIcons name='location-on' />Indonesia</Text>
-                  </View>
+                  <View style={Style.ProfileDesc}>
+                    <Button style={Styles('#5CBFEC').TopButtonIcon}>
+                      <Text>
+                        <MaterialIcons name='payment' color={'#fff'} size={32} />
+                      </Text>
+                      <Text style={{textAlign: 'center', marginTop: 7, color: 'white'}}>Pay</Text>
+                    </Button>
+                      <Button style={Styles('#5CBFEC').TopButtonIcon} >
+                        <Text>
+                          <Feather name='plus-square' color={'#fff'} size={32} />
+                        </Text>
+                        <Text style={{textAlign: 'center', marginTop: 7, color: 'white'}}>Top Up</Text>
+                      </Button>
+                      <Button style={Styles('#5CBFEC').TopButtonIcon} >
+                        <Text>
+                          <MaterialCommunityIcons name='comment-question-outline' color={'#fff'} size={32} />
+                        </Text>
+                        <Text style={{textAlign: 'center', marginTop: 7, color: 'white'}}>Helps</Text>
+                      </Button>
+                    </View>
                 </View>
               
               <View style={Style.navigation}>

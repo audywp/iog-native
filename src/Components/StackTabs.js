@@ -13,7 +13,9 @@ class StackTabs extends Component {
     return (
       <stackTabs.Navigator>
         <stackTabs.Screen name='Login' component={Login} />
-        <stackTabs.Screen name='Home' component={BottomStack} />
+        <stackTabs.Screen name='Home' component={BottomStack} options={{
+          headerShown: false
+        }} />
         <stackTabs.Screen name='Register' component={Register} />
       </stackTabs.Navigator>
     );
