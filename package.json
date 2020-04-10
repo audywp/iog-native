@@ -16,12 +16,16 @@
     "@react-navigation/stack": "^5.2.10",
     "native-base": "^2.13.12",
     "react": "16.11.0",
+    "react-intl-number-format": "^1.1.1",
     "react-native": "0.62.1",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-globalize": "^4.2.1",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.3.7",
+    "react-navigation-stack": "^1.10.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

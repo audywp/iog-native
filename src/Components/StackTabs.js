@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
-import Home from '../Pages/Home';
-
+import Login from '../Pages/Auth/Login'
+import Register from '../Pages/Auth/Register'
+import BottomStack from './BottomTabs';
 const stackTabs= createStackNavigator()
 class StackTabs extends Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class StackTabs extends Component {
   render() {
     return (
       <stackTabs.Navigator>
-        <stackTabs.Screen name='IOG' component={Home} />
+        <stackTabs.Screen name='Login' component={Login} />
+        <stackTabs.Screen name='Home' component={BottomStack} />
+        <stackTabs.Screen name='Register' component={Register} />
       </stackTabs.Navigator>
     );
   }

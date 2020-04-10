@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Home from '../Pages/Home'
-import Register from '../Pages/Register'
+import Register from '../Pages/Auth/Register'
 import Icon from 'react-native-vector-icons/Octicons'
 import IconFeather from 'react-native-vector-icons/Feather'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-
 
 const BottomTabs = createBottomTabNavigator()
 class BottomStack extends Component{
@@ -34,7 +33,7 @@ class BottomStack extends Component{
                 <IconFeather name='user' color={color} size= {size} />
               )
             }} />
-          </BottomTabs.Navigator>
+      </BottomTabs.Navigator>
     )
   }
 }

@@ -6,8 +6,6 @@ import Foundation from 'react-native-vector-icons/Foundation'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import {createStackNavigator} from '@react-navigation/stack'
-import Register from './Register'
-
 const Stack = createStackNavigator()
 
 const Style = StyleSheet.create({
@@ -80,6 +78,14 @@ const Styles = (iconColor) => StyleSheet.create({
 
 export default class Home extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      balance: 150
+    }
+    
+  }
+
   render() {
     const ColorIcon = this.props.colorIcon
     return (
@@ -89,6 +95,10 @@ export default class Home extends Component {
           <View style={Style.HomeDesc}>
             {/* <ImageBackground style={{flex:1}} source={require ('../Assets/Images/973.jpg')} > */}
                 <View style={Style.Profile}>
+                  <View>
+                    <Text>Balance</Text>
+                    <Text>Rp{(this.state.balance).toFixed(3)}</Text>
+                  </View>
                   <Thumbnail source={require('../Assets/Images/person1.jpg')} />
                   <View style= {{justifyContent: "space-around"}}>
                     <Text style={{marginLeft: 10, marginBottom: 3, color:'white'}}>Audy</Text>
