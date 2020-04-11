@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import {Container, Input, Row, Button, Thumbnail, Header, Title, Icon, Left, Right, Body} from 'native-base'
-import {ImageBackground, View, Text, StyleSheet, } from 'react-native'
+import { TouchableOpacity, View, Text, StyleSheet, } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Foundation from 'react-native-vector-icons/Foundation'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import {createStackNavigator} from '@react-navigation/stack'
@@ -16,7 +15,7 @@ const Style = StyleSheet.create({
     borderRadius: 8,
   },
   HomeDesc:{
-    height: 380,
+    height: 300,
     backgroundColor: 'white',
     shadowColor: "#000",
     shadowOffset: {
@@ -43,7 +42,8 @@ const Style = StyleSheet.create({
     justifyContent: "space-around"
   },
   navigation : {
-    justifyContent:"space-around",
+    justifyContent:"center",
+    alignItems: "center",
     flex: 1,
     
   },
@@ -160,58 +160,10 @@ export default class Home extends Component {
                 </View>
               
               <View style={Style.navigation}>
-               <View style = {Style.navI}>
-                  <View>
-                    <Button style={Styles('#5CBFEC').ButtonNav} color={'red'}>
-                      <Text>
-                        <MaterialIcons name='directions-bus' color={'#fff'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>Bus</Text>
-                  </View>
-                  <View>
-                    <Button style={Styles('#1D5DA4').ButtonNav}>
-                      <Text>
-                      <MaterialIcons name='event' color={'#fff'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>Event</Text>
-                    </View>
-                  <View>
-                    <Button style={Styles('#EFA338').ButtonNav}>
-                      <Text>
-                      <MaterialIcons name='schedule' color={'#fff'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>Schedules</Text>
-                  </View>
-               </View>
-               <View style = {Style.navI}>
-                  <View>
-                    <Button style={Styles('#10ac84').ButtonNav}>
-                      <Text>
-                      <Foundation name='ticket' color={'#fff'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>Ticket</Text>
-                  </View>
-                  <View>
-                    <Button style={Styles('#5f27cd').ButtonNav}>
-                      <Text>
-                      <MaterialCommunityIcons name='clipboard-text-outline' color={'#fff'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>History</Text>
-                  </View>
-                  <View>
-                    <Button style={Styles('white').ButtonNav}>
-                      <Text>
-                      <SimpleLineIcons name='options' color={'#333'} size={30} />
-                      </Text>
-                    </Button>
-                    <Text style={{textAlign: 'center', marginTop: 7}}>Settings</Text>
-                  </View>
-               </View>
+                <TouchableOpacity>
+                  <AntDesign name='pluscircleo' size={80} color={'#3490db'} />
+                </TouchableOpacity>
+                
               </View>
             {/* </ImageBackground> */}
           </View>

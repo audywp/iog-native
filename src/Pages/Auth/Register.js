@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Container, Form, Button, Item, Input, View, Text, Left} from 'native-base'
 import {StyleSheet, Button as Btn} from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 const Style = StyleSheet.create({
   Container: {
@@ -32,6 +33,11 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {  };
+  }
+
+  async componentDidMount(){
+    const checkToken = await AsyncStorage.getItem('token')
+    console.log(checkToken)
   }
   render() {
     
