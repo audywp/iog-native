@@ -98,7 +98,7 @@ class Login extends Component {
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
                 <Input secureTextEntry = {this.state.visibilityPassword} onChangeText = { text => this.setState({password: text})} placeholder='Password' textContentType='password' id='password' />
-                <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={26} color = { 'black' } />
+                <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={20} color = { 'black' } style={{marginRight: 10}} />
               </Item>
               <View style= {{ justifyContent: "center", alignItems: "center"}}>
                 <Button style={{ justifyContent : 'center', backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200, marginTop: 20,}} onPress={this.onLogin} >

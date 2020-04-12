@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 export const setLogin = (data) => async dispatch => {
   try {
-    const res = await axios.post(config.APP_BACKEND.concat('admin/login'), data)
+    const res = await axios.post(config.APP_BACKEND.concat('user/login'), data)
     console.log(res.data)
     if (res.data.success === true) {
       await AsyncStorage.setItem('token', res.data.token)

@@ -25,7 +25,7 @@ class StackTabs extends Component {
       {this.props.data && this.props.data.isLogged === false ?
       <stackTabs.Navigator>
         <stackTabs.Screen name='Login' component={Login} />
-        <stackTabs.Screen name='Register' component={Register} />
+        <stackTabs.Screen name='Register' component={Register} options={{headerShown: false}} />
       </stackTabs.Navigator> : 
       <stackTabs.Navigator>
           <stackTabs.Screen name='Home' component={BottomStack} options={{
