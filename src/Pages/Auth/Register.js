@@ -14,7 +14,7 @@ const Style = StyleSheet.create({
   },
 
   Register: {
-    height: 385,
+    height: 400,
     justifyContent: "space-between",
     width: 285,
     backgroundColor: 'white',
@@ -38,9 +38,10 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      picture : imageDefault,
+      // picture : imageDefault,
       username:null,
-      password:null,
+      password:'',
+      confimPassword: '',
       name: null,
       email: null,
       phone: null,
@@ -65,7 +66,7 @@ class Register extends Component {
     }
 
     this.onRegister = () => {
-      const {username, password, name, email, phone} = this.state
+      const {username, password, confirmPassword, name, email, phone} = this.state
       
       // if (this.props.data.isLoading === false) {
       //   this.setState({
@@ -80,19 +81,22 @@ class Register extends Component {
         
       // }
       
-      if ((username && password && name && email && phone) !== null) {
-        const data= {
-          username: username,
-          password: password,
-          name: name,
-          email: email,
-          phone: phone
+      if ((username && password && name && confirmPassword && email && phone) !== null) {
+        if ( this.state.password === this.state.confirmPassword ) {
+          const data= {
+            username: username,
+            password: password,
+            name: name,
+            email: email,
+            phone: phone
+          }
+          this.props.isRegister(data)
+          this.props.navigation.navigate('Login')
+        } else {
+          Alert.alert('your password didn\'t match')
         }
-        this.props.isRegister(data)
-        this.props.navigation.navigate('Login')
       } else {
         Alert.alert('You must fill all form input')
-        
       }
       
     }
@@ -100,7 +104,7 @@ class Register extends Component {
 
   async componentDidMount(){
     
-    console.log(this.props.data)
+    console.log(this.state.password, this.state.confimPassword)
   }
   render() {
     
@@ -130,7 +134,12 @@ class Register extends Component {
               </Item>
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
-                <Input onPress={Keyboard.dismiss} placeholder='Phone' textContentType='telephoneNumber' id='phone' />
+                <Input secureTextEntry= {this.state.visibilityPassword} onChangeText = {text => this.setState({confirmPassword: text})} placeholder='Confirm Password' textContentType='password' id='Cpassword' />
+                <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={12} color = { 'black' } style={{marginRight: 10}} />
+              </Item>
+              <Item>
+                {/*Phone*/}
+                <Input onPress={Keyboard.dismiss} onChangeText={text=>this.setState({phone:text})} placeholder='Phone' textContentType='telephoneNumber' id='phone' />
               </Item>
               </View>
               
