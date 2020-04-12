@@ -12,6 +12,7 @@ export default function isLogin(state = initialState, {type, payload}) {
       return {
         ...state,
         isLogged: true,
+        isLoading: true,
         data: payload,
       };
     }
@@ -24,7 +25,8 @@ export default function isLogin(state = initialState, {type, payload}) {
     case 'SET_LOGOUT': {
       return {
         ...state,
-        isLogin: false,
+        isLogged: false,
+        isLoading: false
       };
     }
     default:

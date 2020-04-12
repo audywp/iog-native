@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import {Container, Form, Button, Item, Input, View, Text, Left} from 'native-base'
-import {StyleSheet, Button as Btn} from 'react-native'
+import {Container, Form, Button, Item, Input, View, Text, Left, Spinner} from 'native-base'
+import {StyleSheet, Button as Btn, Alert} from 'react-native'
 import {setLogin} from '../../Redux/Actions/Auth/Login'
 import {connect} from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-
 const Style = StyleSheet.create({
   Container: {
     
@@ -40,7 +39,9 @@ class Login extends Component {
       username: '',
       password: '',
       icons: 'visibility',
-      visibilityPassword: true
+      visibilityPassword: true,
+      isLoading: false,
+      content: <Text>Login</Text>
      };
 
 
@@ -64,12 +65,24 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
       }
-      const dataLogin = this.props.setLogin(data)
-      console.log(dataLogin)
-      console.log(this.state.username, this.state.password)
+      this.props.setLogin(data)
+      if (this.props.data.isLoading === false) {
+        this.setState({
+          isLoading: !this.state.isLoading,
+          content : this.state.content = <Spinner color='white' />
+        })
+      } else {
+        this.setState({
+          isLoading: !this.state.isLoading,
+          content : this.state.content = <Text>Login</Text>
+        })
+      }
     }
   }
 
+  componentDidMount(){
+    console.log(this.props.data)
+  }
   render() {
     return (
       <>
@@ -84,10 +97,14 @@ class Login extends Component {
 
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
-                <Input onChangeText = { text => this.setState({password: text})} placeholder='Password' textContentType='password' id='password' />
+                <Input secureTextEntry = {this.state.visibilityPassword} onChangeText = { text => this.setState({password: text})} placeholder='Password' textContentType='password' id='password' />
                 <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={26} color = { 'black' } />
               </Item>
-              <View style= {{ justifyContent: "center", alignItems: "center"}}><Button style={{backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200, marginTop: 20}}><Text style={{flex:1, textAlign: "center",}} onPress={this.onLogin} >Login</Text></Button></View>
+              <View style= {{ justifyContent: "center", alignItems: "center"}}>
+                <Button style={{ justifyContent : 'center', backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200, marginTop: 20,}} onPress={this.onLogin} >
+                  {this.state.content}
+                </Button>
+              </View>
             </Form>
           </View>
           <View style={{flex: 1, marginTop: 40}} >

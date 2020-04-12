@@ -63,6 +63,7 @@ class Order extends Component {
       chosenDate: new Date()
      };
     this.setDate = this.setDate.bind(this);
+
   }
   onValueChangeBus(value: string) {
     this.setState({
@@ -99,6 +100,10 @@ class Order extends Component {
                 <Text style= {{ color: 'white', marginBottom: 10 }}>Choose Your Bus</Text>
                 <View style = {buttonStyle.Button}>
                   <Picker
+                    itemStyle= {{
+                      backgroundColor: 'blue',
+                      color: 'black'
+                    }}
                     mode="dropdown"
                     selectedValue={this.state.selectedBus}
                     onValueChange={this.onValueChangeBus.bind(this)}>
@@ -126,7 +131,7 @@ class Order extends Component {
 
                 <View style = {buttonStyle.Button}>
                   <Picker
-                    
+                    placeholderStyle={{ color: "#fff" }}
                     mode="dropdown"
                     selectedValue={this.state.selectedRoutesTo}
                     onValueChange={this.onValueChangeRoutesTo.bind(this)}>

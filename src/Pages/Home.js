@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import {Container, Input, Row, Button, Thumbnail, Header, Title, Icon, Left, Right, Body} from 'native-base'
-import { TouchableOpacity, View, Text, StyleSheet, } from 'react-native'
+import {Container, Card, CardItem, Button, } from 'native-base'
+import { TouchableOpacity, View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import {createStackNavigator} from '@react-navigation/stack'
+import Endas from '../Components/Header'
 const Stack = createStackNavigator()
 
 const Style = StyleSheet.create({
@@ -31,8 +32,7 @@ const Style = StyleSheet.create({
   },
   HomeNavigation: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    marginTop: 15
   },
   Location: {
     flexDirection: "row"
@@ -107,28 +107,10 @@ export default class Home extends Component {
   render() {
     const ColorIcon = this.props.colorIcon
     return (
-      <>
+      <ScrollView>
 
         <Container style={Style.HomeContainer}>
-          <Header>
-            <Left>
-              <Thumbnail small source={require('../Assets/Images/person1.jpg')} />
-            </Left>
-            <Body>
-              <Title>Audy</Title>
-            </Body>
-            <Right>
-              <Button transparent>
-                <Icon name='search' />
-              </Button>
-              <Button transparent>
-                <Icon name='heart' />
-              </Button>
-              <Button transparent>
-                <Icon name='more' />
-              </Button>
-            </Right>
-          </Header>
+          <Endas />
           <View style={Style.HomeDesc}>
             {/* <ImageBackground style={{flex:1}} source={require ('../Assets/Images/973.jpg')} > */}
 
@@ -169,12 +151,19 @@ export default class Home extends Component {
           </View>
 
           <View style={Style.HomeNavigation}>
-            <Text>
-              Coming soon
-            </Text>
+            <View>
+              <Card style={{width: '100%', borderRadius: 30 }}>
+                <CardItem cardBody >
+                  <Image source={require('../Assets/Images/973.jpg')} style={{ borderRadius: 20, height: 200, flex: 1}} />
+                </CardItem>
+                <CardItem>
+                  <Text>PILIH TEMPAT DUDUK YANG ANDA INGINKAN</Text>
+                </CardItem>
+              </Card>
+            </View>
           </View>
         </Container>
-      </>
+      </ScrollView>
     )
   }
 }

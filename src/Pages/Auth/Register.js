@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {Container, Form, Button, Item, Input, View, Text, Left} from 'native-base'
-import {StyleSheet, Button as Btn} from 'react-native'
+import {Container, Form, Button, Item, Input, View, Text, Left,} from 'native-base'
+import {StyleSheet, Button as Btn, ScrollView, Keyboard} from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 
 const Style = StyleSheet.create({
@@ -11,10 +11,10 @@ const Style = StyleSheet.create({
   },
 
   Register: {
+    height: 400,
+    justifyContent: "space-between",
     width: 285,
     backgroundColor: 'white',
-    padding: 10,
-    paddingVertical: 30,
     borderRadius: 5,
     borderTopEndRadius: 40,
     borderBottomLeftRadius: 40,
@@ -26,6 +26,7 @@ const Style = StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
     elevation: 11,
+    alignItems: 'center'
   }
 })
 
@@ -44,9 +45,10 @@ class Register extends Component {
     return (
       <>
         <Container style={Style.Container}>
-          <View style={{flex: 1, justifyContent: 'center' }}><Text style={{ fontSize: 26 }}>Sign Up</Text></View>
+          <View style={{height: 60, justifyContent: 'center' }}><Text style={{ fontSize: 26 }}>Sign Up</Text></View>
           <View style={Style.Register}>
-            <Form>
+            <Form >
+              <View>
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
                 <Input placeholder='Name' textContentType='name' id='name' />
@@ -69,12 +71,19 @@ class Register extends Component {
               </Item>
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
-                <Input placeholder='Phone' textContentType='telephoneNumber' id='phone' />
+                <Input onPress={Keyboard.dismiss} placeholder='Phone' textContentType='telephoneNumber' id='phone' />
               </Item>
+              </View>
+              
+                <View style={{marginTop: 20}}>
+                  <Button style={{backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200}}>
+                    <Text style={{flex:1, textAlign: "center",}}>Register</Text>
+                  </Button>
+                </View>
+              
             </Form>
           </View>
-          <View style={{flex:1, marginTop: 20, marginBottom: 10}}><Button style={{backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200}}><Text style={{flex:1, textAlign: "center",}}>Register</Text></Button></View>
-          <View style={{flex: 1}} >
+          <View style={{flex: 1, marginTop: 20}} >
                <Text>Have an account?</Text>
                <Button transparent onPress={()=> this.props.navigation.navigate('Login')} title='Login' ><Text style={{flex:1, textAlign:'center'}}>Login</Text></Button>
           </View>

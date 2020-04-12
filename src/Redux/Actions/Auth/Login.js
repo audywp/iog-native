@@ -1,17 +1,16 @@
 import config from '../../../utils/Config'
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage'
-import { Alert } from 'react-native'
-import Axios from 'axios';
 
 export const setLogin = (data) => async dispatch => {
   try {
     const res = await axios.post(config.APP_BACKEND.concat('admin/login'), data)
+    console.log(res.data)
     if (res.data.success === true) {
       await AsyncStorage.setItem('token', res.data.token)
       dispatch({
         type: 'IS_LOGIN',
-        payload: res.data
+        payload: res.data,
       })
     } else {
       console.log('failed')
@@ -24,6 +23,6 @@ export const setLogin = (data) => async dispatch => {
 export const setLogout = () => {
   AsyncStorage.removeItem('token');
   return {
-    type: 'IS_LOGOUT',
+    type: 'SET_LOGOUT',
   };
 };

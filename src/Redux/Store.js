@@ -11,7 +11,7 @@ import allReducers from './Reducer';
 const config = {
   key: 'iog',
   storage: AsyncStorage,
-  whitelist: ['isLogin'],
+  
 };
 
 const persistedReducer = persistReducer(config, allReducers)
