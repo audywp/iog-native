@@ -3,29 +3,45 @@ import {Text} from 'react-native'
 import {Thumbnail, Header as Endas, Title, Icon, Left, Right, Body, Button} from 'native-base'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import {connect} from 'react-redux'
+import { UserDetail } from '../Redux/Actions/User/UserDetail'
 import {setLogout} from '../Redux/Actions/Auth/Login'
-
+import config from '../utils/Config'
+import AsyncStorage from '@react-native-community/async-storage'
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {  };
 
-    this.isLogout = () => {
-      this.props.setLogout()
+    this.isLogout = async () => {
+      try {
+        await AsyncStorage.removeItem('token')
+        await AsyncStorage.clear()
+        this.props.setLogout()
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
-  componentDidMount(){
-    console.log('ass', this.props.data)
+  componentDidMount = async () => {
+    try {
+      const id = await AsyncStorage.getItem('id')
+      console.log(id)
+      await this.props.UserDetail(id)
+    } catch (error) {
+      console.log(error)
+    }
   }
   render() {
     return (
       <Endas>
         <Left>
-          <Thumbnail small source={require('../Assets/Images/person1.jpg')} />
+          <Thumbnail small source={{uri: config.APP_BACKEND.concat(`file/${this.props.userLogin.data.data
+            && this.props.userLogin.data.data.picture
+          }`)}} />
         </Left>
         <Body>
-          <Title>Audy</Title>
+          <Title>{this.props.userLogin.data.data && this.props.userLogin.data.data.username}</Title>
         </Body>
         <Right>
           <Button onPress={this.isLogout} transparent style={{flexDirection: 'column'}}>
@@ -40,8 +56,8 @@ class Header extends Component {
 
 const mapStateToPRops = state => {
   return {
-    data: state.isLogin
+    userLogin: state.isLogin
   }
 }
 
-export default connect(mapStateToPRops, {setLogout})(Header)
+export default connect(mapStateToPRops, {setLogout, UserDetail})(Header)

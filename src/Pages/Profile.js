@@ -67,7 +67,7 @@ class Profile extends Component {
           </View>
 
           <View style = {style.body}>
-            <Text style={{fontSize: 16}}>Profile</Text>
+            <Text style={{fontSize: 24}}>Account</Text>
             <Item disabled>
               <MaterialIcons name='lock' size={18} color={'#333'} />
               <Input disabled placeholder='Change Password' />

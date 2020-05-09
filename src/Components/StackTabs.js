@@ -6,6 +6,12 @@ import BottomStack from './BottomTabs';
 import {setLogin} from '../Redux/Actions/Auth/Login'
 import {connect} from 'react-redux'
 
+// component & screens
+import ForgotPassword from './ForgotPasword'
+import SetPassowrd from './SetPassword'
+import TopUp from '../Pages/Payment/TopUp'
+import Status from '../Pages/Payment/Status'
+import Pending from '../Pages/Payment/Pending'
 
 const stackTabs= createStackNavigator()
 class StackTabs extends Component {
@@ -24,12 +30,25 @@ class StackTabs extends Component {
       <>
       {this.props.data && this.props.data.isLogged === false ?
       <stackTabs.Navigator>
-        <stackTabs.Screen name='Login' component={Login} />
+        <stackTabs.Screen name='Login' component={Login} options={{headerShown: false}} />
         <stackTabs.Screen name='Register' component={Register} options={{headerShown: false}} />
+        <stackTabs.Screen name='ForgotPassword' component={ForgotPassword} />
+        <stackTabs.Screen name='SetPassword' component={SetPassowrd} />
       </stackTabs.Navigator> : 
       <stackTabs.Navigator>
           <stackTabs.Screen name='Home' component={BottomStack} options={{
             headerShown: false
+          }} />
+          <stackTabs.Screen name='TopUp' component={TopUp} options={{
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#3475db' }
+          }} />
+          <stackTabs.Screen name='Status Payment' component={Status} options={{
+            headerShown: false
+          }} />
+          <stackTabs.Screen name='Pay' component={Pending} options={{
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#3475db' }
           }} />
       </stackTabs.Navigator>}
       </>

@@ -4,7 +4,6 @@ import {StyleSheet} from 'react-native'
 export const buttonStyle = StyleSheet.create({
   Button: {
     width: '60%',
-    height: 40, 
     borderRadius: 6,
     shadowColor: "#000",
     shadowOffset: {
@@ -17,8 +16,8 @@ export const buttonStyle = StyleSheet.create({
     justifyContent: "center",
   },
   Header: {
-    height: 100,
-    backgroundColor: '#3498db',
+    height: 50,
+    marginBottom: 10,
     justifyContent: "center",
     alignItems:"center",
     borderBottomEndRadius: 40,
@@ -26,14 +25,11 @@ export const buttonStyle = StyleSheet.create({
   },
   Body: {
     flex: 1,
-    backgroundColor: '#c3dbf5',
-    
   },
   Submit: {
-    borderTopEndRadius: 40,
-    borderTopLeftRadius: 40,
-    height:100,
-    backgroundColor: '#3490db',
+    backgroundColor: 'white',
+    paddingVertical: 8,
+    width: '80%',
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",

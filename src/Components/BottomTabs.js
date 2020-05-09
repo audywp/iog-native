@@ -19,17 +19,17 @@ class BottomStack extends Component{
                 <Icon name='home' color={color} size={size} />
               )
             }} />
-            <BottomTabs.Screen name='History' component={Order} options={{
-              tabBarLabel: 'History',
+            <BottomTabs.Screen name='Order' component={Order} options={{
+              tabBarLabel: 'Order',
               tabBarIcon:({color, size}) => (
                 <IconFeather name= 'activity' color={color} size = {size} />
               )
             }} />
-            <BottomTabs.Screen name='Live Chat' component={Home} options={{
+            {/* <BottomTabs.Screen name='Live Chat' component={Home} options={{
               tabBarIcon:({color, size}) => (
                 <SimpleLineIcons name='bubbles' color={color} size = { size } />
               )
-            }} />
+            }} /> */}
             <BottomTabs.Screen name='Profile' component={Profile} options={{
               tabBarIcon:({color, size}) => (
                 <IconFeather name='user' color={color} size= {size} />

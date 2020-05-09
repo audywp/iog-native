@@ -1,5 +1,5 @@
 {
-  "name": "Iog",
+  "name": "iog",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/datetimepicker": "^2.3.2",
     "@react-native-community/masked-view": "^0.1.7",
     "@react-navigation/bottom-tabs": "^5.2.6",
     "@react-navigation/native": "^5.1.5",
@@ -23,6 +24,7 @@
     "react-intl-number-format": "^1.1.1",
     "react-native": "0.62.1",
     "react-native-calender": "^1.0.1",
+    "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-globalize": "^4.2.1",

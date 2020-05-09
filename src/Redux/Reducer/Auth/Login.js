@@ -16,17 +16,19 @@ export default function isLogin(state = initialState, {type, payload}) {
         data: payload,
       };
     }
-    case 'SET_LOADING_AUTH': {
+    case 'SET_PASSWORD': {
       return {
         ...state,
         isLoading: true,
+        data: payload
       };
     }
     case 'SET_LOGOUT': {
       return {
         ...state,
         isLogged: false,
-        isLoading: false
+        isLoading: false,
+        data: {}
       };
     }
     default:

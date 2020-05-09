@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {Container, Form, Button, Item, Input, View, Text, Left, Spinner} from 'native-base'
 import {StyleSheet, Button as Btn, Alert} from 'react-native'
 import {setLogin} from '../../Redux/Actions/Auth/Login'
+import { UserDetail } from '../../Redux/Actions/User/UserDetail'
+import { dataRoutes } from '../../Redux/Actions/Routes'
+import { Agents } from '../../Redux/Actions/Agent'
 import {connect} from 'react-redux'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const Style = StyleSheet.create({
@@ -65,7 +68,21 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
       }
-      this.props.setLogin(data)
+      this.props.setLogin(data).then( async () => {
+        if(this.props.data.data.success === false) {
+          Alert.alert('Wrong Username / password')
+        } else {
+          try {
+            await this.props.UserDetail(this.props.data.data.data.id)
+            await this.props.dataRoutes()
+            await this.props.Agents()
+          } catch (error) {
+            console.log(error)
+          }
+        }
+      })
+
+
       if (this.props.data.isLoading === false) {
         this.setState({
           isLoading: !this.state.isLoading,
@@ -81,7 +98,7 @@ class Login extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.data)
+    console.log(this.props.data.data)
   }
   render() {
     return (
@@ -98,12 +115,16 @@ class Login extends Component {
               <Item>
                 {/* <Label> {this.props.name} </Label> */}
                 <Input secureTextEntry = {this.state.visibilityPassword} onChangeText = { text => this.setState({password: text})} placeholder='Password' textContentType='password' id='password' />
-                <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={20} color = { 'black' } style={{marginRight: 10}} />
+                <MaterialIcons onPress={this.setPasswordVisibility} name={this.state.icons} size={20} color = { '#000' } style={{marginRight: 10}} />
               </Item>
               <View style= {{ justifyContent: "center", alignItems: "center"}}>
                 <Button style={{ justifyContent : 'center', backgroundColor:'#3498db', alignItems: "center", borderRadius: 8, width: 200, marginTop: 20,}} onPress={this.onLogin} >
                   {this.state.content}
                 </Button>
+              </View>
+              <Button onPress = {()=> {this.props.navigation.navigate('ForgotPassword')}} transparent title='Forgot Password' ><Text style={{flex:1, textAlign:'center', marginTop: 20}}>Forgot Password ?</Text></Button>
+              <View>
+
               </View>
             </Form>
           </View>
@@ -122,4 +143,4 @@ const mapStateToProps = state => {
     data: state.isLogin
   }
 }
-export default connect(mapStateToProps, { setLogin }) (Login)
+export default connect(mapStateToProps, { setLogin, UserDetail, dataRoutes, Agents }) (Login)
