@@ -6,7 +6,6 @@
 ## Introduction
 
 [![React Native](https://img.shields.io/badge/react%20native-v0.60.5-blue)](https://facebook.github.io/react-native/)
-[![NPM version](http://img.shields.io/npm/v/react-native-android-badge.svg?style=flat)](https://www.npmjs.com/package/react-native-android-badge)
 
 <p align='justify'>Iog Travel is a Bus Ticket Reservations platform. The reservation transactions are mainly designed in the mobile version while the reservation and others data management runs in web platform. This app was build with React native and React js
 
@@ -15,7 +14,7 @@
 ## Requirements
 
 1. <a href="https://nodejs.org/en/download/">Node Js</a>
-2. Node_modules `npm install` or `yarn install`
+2. <a href="https://developer.android.com/studio">Android Studio `JDK 8` or `openJDK 8`<a/>
 
 
 ## Installation
