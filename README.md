@@ -22,14 +22,12 @@
 
 1. Download this Project or you can type `git clone https://github.com/audywp/iog-native.git`
 2. Open app's directory in CMD or Terminal
-3. Type `npm install` or `yarn install`
+3. Type `yarn install`
 4. Type ` react-native run-android
 
 Sometimes you may need to reset or clear the React Native packager's cache. To do so, you can pass the `--reset-cache` flag to the start script:
 
 ```
-npm start -- --reset-cache
-# or
 yarn start -- --reset-cache
 ```
 
