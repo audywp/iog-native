@@ -14,7 +14,8 @@
 ## Requirements
 
 1. <a href="https://nodejs.org/en/download/">Node Js</a>
-2. <a href="https://developer.android.com/studio">Android Studio `JDK 8` or `openJDK 8`<a/>
+2. <a href="https://developer.android.com/studio">Android Studio<a/>
+3. <a href="https://www.oracle.com/java/technologies/javase-jdk8-downloads.html">`Java SE Development Kit 8`<a/> or <a href="https://openjdk.java.net/install/">`openJDK 8`<a/> `
 
 
 ## Installation
