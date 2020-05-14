@@ -36,9 +36,7 @@ class Header extends Component {
     return (
       <Endas>
         <Left>
-          <Thumbnail small source={{uri: config.APP_BACKEND.concat(`file/${this.props.userLogin.data.data
-            && this.props.userLogin.data.data.picture
-          }`)}} />
+          <Thumbnail small source={require('../Assets/Images/person1.jpg')} />
         </Left>
         <Body>
           <Title>{this.props.userLogin.data.data && this.props.userLogin.data.data.username}</Title>
