@@ -14,7 +14,7 @@ getToken()
 export const TopUp = (data) => async dispatch => {
   const res = await axios.patch(Config.APP_BACKEND.concat(`user/topup`), data)
   try {
-    dispatch ({
+    dispatch({
       type: 'TOPUP',
       payload: res.data
     })
@@ -26,16 +26,16 @@ export const TopUp = (data) => async dispatch => {
 export const Indomaret = (data) => async dispatch => {
 
   try {
-    const res = await axios.post('https://api.sandbox.midtrans.com/v2/charge', JSON.stringify(data) ,{
-    headers : { 'Content-Type': 'application/json', Accept:'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
-  })
-  console.log(res)
-  if (res) {
-    dispatch({
-      type: 'INDOMARET',
-      payload: res.data
+    const res = await axios.post('https://api.sandbox.midtrans.com/v2/charge', JSON.stringify(data), {
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
     })
-  }
+    console.log(res)
+    if (res) {
+      dispatch({
+        type: 'INDOMARET',
+        payload: res.data
+      })
+    }
   } catch (error) {
     console.log(error)
   }
@@ -44,15 +44,15 @@ export const Indomaret = (data) => async dispatch => {
 export const ValidationPayment = (order_id) => async dispatch => {
   try {
     const res = await axios.get(`https://api.sandbox.midtrans.com/v2/${order_id}/status`, {
-    headers : { 'Content-Type': 'application/json', Accept:'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
-  })
-  console.log(res)
-  if (res) {
-    dispatch({
-      type: 'VALIDATION',
-      payload: res.data
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
     })
-  }
+    console.log(res)
+    if (res) {
+      dispatch({
+        type: 'VALIDATION',
+        payload: res.data
+      })
+    }
   } catch (error) {
     console.log(error)
   }

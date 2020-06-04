@@ -70,7 +70,6 @@ class Login extends Component {
         }
         this.props.setLogin(data).then(async () => {
           if (this.props.data.data.success) {
-            await this.props.UserDetail()
             await this.props.dataRoutes()
             await this.props.Agents()
           } else {

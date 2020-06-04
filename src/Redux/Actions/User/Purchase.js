@@ -12,9 +12,9 @@ const getToken = async () => {
 }
 getToken()
 export const GetSchedules = (data) => async dispatch => {
-  const res = await axios.post(Config.APP_BACKEND.concat(`user/purchase`), data)
   try {
-    dispatch ({
+    const res = await axios.post(Config.APP_BACKEND.concat(`user/purchase`), data)
+    dispatch({
       type: 'GET_SCHEDULES_USER',
       payload: res.data
     })
@@ -23,17 +23,13 @@ export const GetSchedules = (data) => async dispatch => {
   }
 }
 
-export const Purchase = (data) => async dispatch => {
-  const res = await axios.post(Config.APP_BACKEND.concat('user/transaction/add'), data)
+export const Purchase = (token, data) => async dispatch => {
   try {
-    if (res) {
-      dispatch ({
-        type: 'PURCHASE_SCHEDULES',
-        payload: res.data
-      })
-    } else {
-      Alert.alert(res.data.msg)
-    }
+    const res = await axios.post(Config.APP_BACKEND.concat('user/transaction/add'), data, { headers: { Authorization: `Bearer ${token}` } })
+    dispatch({
+      type: 'PURCHASE_SCHEDULES',
+      payload: res.data
+    });
   } catch (err) {
     console.log(err)
   }
@@ -42,16 +38,16 @@ export const Purchase = (data) => async dispatch => {
 export const Indomaret = (data) => async dispatch => {
 
   try {
-    const res = await axios.post('https://api.sandbox.midtrans.com/v2/charge', JSON.stringify(data) ,{
-    headers : { 'Content-Type': 'application/json', Accept:'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
-  })
-  console.log(res)
-  if (res) {
-    dispatch({
-      type: 'INDOMARET',
-      payload: res.data
+    const res = await axios.post('https://api.sandbox.midtrans.com/v2/charge', JSON.stringify(data), {
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
     })
-  }
+    console.log(res)
+    if (res) {
+      dispatch({
+        type: 'INDOMARET',
+        payload: res.data
+      })
+    }
   } catch (error) {
     console.log(error)
   }
@@ -60,15 +56,15 @@ export const Indomaret = (data) => async dispatch => {
 export const ValidationPayment = (order_id) => async dispatch => {
   try {
     const res = await axios.get(`https://api.sandbox.midtrans.com/v2/${order_id}/status`, {
-    headers : { 'Content-Type': 'application/json', Accept:'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
-  })
-  console.log(res)
-  if (res) {
-    dispatch({
-      type: 'VALIDATION',
-      payload: res.data
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: 'Basic U0ItTWlkLXNlcnZlci14aUtaLTUycDkzNUhQVkk4X1QzMWZHcjQ6' }
     })
-  }
+    console.log(res)
+    if (res) {
+      dispatch({
+        type: 'VALIDATION',
+        payload: res.data
+      })
+    }
   } catch (error) {
     console.log(error)
   }

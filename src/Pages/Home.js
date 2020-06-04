@@ -17,7 +17,7 @@ import { UserDetail } from '../Redux/Actions/User/UserDetail'
 import { TopUp, GetPayment } from '../Redux/Actions/User/TopUp'
 import { dataRoutes } from '../Redux/Actions/Routes'
 import { Agents } from '../Redux/Actions/Agent'
-import { GetSchedules } from '../Redux/Actions/User/Purchase'
+import { GetSchedules, Purchase } from '../Redux/Actions/User/Purchase'
 import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
 import LoadingScreen from '../Components/LoadingScreen'
@@ -32,7 +32,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents, GetPayment, GetSchedules })(class Home extends Component {
+export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents, GetPayment, GetSchedules, Purchase })(class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -55,12 +55,12 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
   setDate(newDate) {
     this.setState({ chosenDate: newDate })
   }
-  async componentDidMount() {
-
+  componentDidMount = async () => {
     try {
+      const token = await AsyncStorage.getItem('token')
+      console.log(token)
       const id = await AsyncStorage.getItem('id')
-      await this.props.UserDetail()
-      await this.props.dataRoutes()
+      await this.props.UserDetail(token)
       await this.props.dataRoutes()
       await this.props.Agents()
       this.setState({

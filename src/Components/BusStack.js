@@ -41,15 +41,17 @@ class Order extends Component {
   }
 
   makePurchase = async (id, price) => {
+
     try {
-      this.setState({
-        loading: true
-      })
       const idUser = await AsyncStorage.getItem('id')
       const data = {
         idSchedule: id
       }
-      await this.props.Purchase(data).then(async () => {
+      this.setState({
+        loading: true
+      })
+      const token = await AsyncStorage.getItem('token')
+      await this.props.Purchase(token, data).then(async () => {
 
         if (this.props.scheduleUser.dataPurchase.success) {
           const data = {
@@ -66,7 +68,11 @@ class Order extends Component {
           this.props.navigation.navigate('Home')
         } else {
           Alert.alert(this.props.scheduleUser.dataPurchase.msg)
+          this.setState({
+            loading: false
+          })
           this.props.navigation.navigate('TopUp')
+
         }
       })
     } catch (error) {
@@ -74,19 +80,20 @@ class Order extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      loading: false
-    })
-    this.props.dataSchedule()
-    console.log(this.props.data.data.result)
+  async componentDidMount() {
+    try {
+      await this.props.dataSchedule()
+      console.log(this.props.data.data.result)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
     if (this.props.scheduleUser.Schedules.schedule) {
       return (
         <>
-          {this.state.loading ? <LoadingScreen /> : null}
+
           <View horizontal={true} style={buttonStyle.Body}>
             <View style={{ flex: 1, justifyContent: "space-between" }}>
               <View style={buttonStyle.Header}>
@@ -95,6 +102,7 @@ class Order extends Component {
 
 
               <ScrollView style={{ flex: 1, flexDirection: "column" }} >
+
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                   {this.props.scheduleUser.Schedules.schedule && this.props.scheduleUser.Schedules.schedule.map((schedule, i) => {
                     return (
@@ -146,6 +154,7 @@ class Order extends Component {
     } else {
       return (
         <>
+          {this.state.loading ? <LoadingScreen /> : null}
           <View horizontal={true} style={buttonStyle.Body}>
             <View style={{ flex: 1, justifyContent: "space-between" }}>
               <View style={buttonStyle.Header}>
@@ -209,7 +218,7 @@ class Order extends Component {
 const mapStateToProps = state => {
   return {
     data: state.dataSchedule,
-    scheduleUser: state.GetSchedules
+    scheduleUser: state.GetSchedules,
   }
 }
 

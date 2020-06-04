@@ -8,18 +8,13 @@ export const setLogin = (data, callback) => async dispatch => {
     const res = await axios.post(config.APP_BACKEND.concat('user/login'), data)
     console.log(res.data)
     if (res.data.success === true) {
-      if (res.data.data.is_verified) {
-        await AsyncStorage.setItem('token', res.data.token);
-        await AsyncStorage.setItem('id', `${res.data.data.id}`);
-        dispatch({
-          type: 'IS_LOGIN',
-          payload: res.data,
-        })
-        callback(true)
-      } else {
-        callback(false)
-      }
-
+      await AsyncStorage.setItem('id', `${res.data.data.id}`);
+      await AsyncStorage.setItem('token', res.data.token);
+      console.log(await AsyncStorage.getItem('token'))
+      dispatch({
+        type: 'IS_LOGIN',
+        payload: res.data,
+      })
     } else {
       Alert.alert('wrong username / password')
     }
