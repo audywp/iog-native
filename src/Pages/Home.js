@@ -48,7 +48,7 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
       idRoute: 0,
       idAgent: 0,
       nameAgent: null,
-      loading: true,
+      loading: false,
     }
     this.setDate = this.setDate.bind(this)
   }
@@ -57,6 +57,9 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
   }
   componentDidMount = async () => {
     try {
+      this.setState({
+        loading: true
+      })
       const token = await AsyncStorage.getItem('token')
       console.log(token)
       const id = await AsyncStorage.getItem('id')
@@ -84,7 +87,7 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
 
   getUser = async () => {
     try {
-      const id = await AsyncStorage.getItem('id')
+      const id = await AsyncStorage.getItem('token')
       await this.props.UserDetail(id)
     } catch (error) {
       console.log(error)
@@ -92,7 +95,13 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
   }
   PaymentGate = async () => {
     try {
+      this.setState({
+        loading: true
+      })
       await this.props.GetPayment()
+      this.setState({
+        loading: false
+      })
       this.props.navigation.navigate('Pay')
     } catch (error) {
       console.log(error)
@@ -111,6 +120,9 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
       }
       console.log(data)
       await this.props.GetSchedules(data)
+      this.setState({
+        loading: false
+      })
       this.props.navigation.navigate('Order')
     } catch (error) {
       console.log(error)

@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import {Text} from 'react-native'
-import {Thumbnail, Header as Endas, Title, Icon, Left, Right, Body, Button} from 'native-base'
+import { Text } from 'react-native'
+import { Thumbnail, Header as Endas, Title, Icon, Left, Right, Body, Button } from 'native-base'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { UserDetail } from '../Redux/Actions/User/UserDetail'
-import {setLogout} from '../Redux/Actions/Auth/Login'
+import { setLogout } from '../Redux/Actions/Auth/Login'
 import config from '../utils/Config'
 import AsyncStorage from '@react-native-community/async-storage'
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {  };
+    this.state = {};
 
     this.isLogout = async () => {
       try {
@@ -25,7 +25,7 @@ class Header extends Component {
 
   componentDidMount = async () => {
     try {
-      const id = await AsyncStorage.getItem('id')
+      const id = await AsyncStorage.getItem('token')
       console.log(id)
       await this.props.UserDetail(id)
     } catch (error) {
@@ -42,9 +42,9 @@ class Header extends Component {
           <Title>{this.props.userLogin.data.data && this.props.userLogin.data.data.username}</Title>
         </Body>
         <Right>
-          <Button onPress={this.isLogout} transparent style={{flexDirection: 'column'}}>
+          <Button onPress={this.isLogout} transparent style={{ flexDirection: 'column' }}>
             <AntDesign color={'white'} size={20} name='logout' />
-            <Text style={{color: 'white'}}>Logout</Text>
+            <Text style={{ color: 'white' }}>Logout</Text>
           </Button>
         </Right>
       </Endas>
@@ -58,4 +58,4 @@ const mapStateToPRops = state => {
   }
 }
 
-export default connect(mapStateToPRops, {setLogout, UserDetail})(Header)
+export default connect(mapStateToPRops, { setLogout, UserDetail })(Header)

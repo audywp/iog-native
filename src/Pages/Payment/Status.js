@@ -50,13 +50,13 @@ const Status = (props) => {
   const UpdateValidation = async () => {
     const amount = props.order.validation.gross_amount
     try {
-      const id = await AsyncStorage.getItem('id')
       const data = {
         balance: amount
       }
       setLoading(true)
-      await props.TopUp(data)
-      await props.UserDetail(id)
+      const token = await AsyncStorage.getItem('token')
+      await props.TopUp(data);
+      await props.UserDetail(token)
       await props.UpdatePayment(props.order.idPayment.results || props.order.orderId.results[0].id)
       props.navigation.navigate('Home')
     } catch (error) {

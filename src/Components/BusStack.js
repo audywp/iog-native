@@ -64,8 +64,11 @@ class Order extends Component {
           }
           await this.props.CreatePayment(data)
           await this.props.dataSchedule()
-          await this.props.UserDetail()
+          await this.props.UserDetail(await AsyncStorage.getItem('token'))
           this.props.navigation.navigate('Home')
+          this.setState({
+            loading: false
+          })
         } else {
           Alert.alert(this.props.scheduleUser.dataPurchase.msg)
           this.setState({
@@ -83,6 +86,9 @@ class Order extends Component {
   async componentDidMount() {
     try {
       await this.props.dataSchedule()
+      this.setState({
+        loading: false
+      })
       console.log(this.props.data.data.result)
     } catch (error) {
       console.log(error)
@@ -93,7 +99,7 @@ class Order extends Component {
     if (this.props.scheduleUser.Schedules.schedule) {
       return (
         <>
-
+          {this.state.loading ? <LoadingScreen /> : null}
           <View horizontal={true} style={buttonStyle.Body}>
             <View style={{ flex: 1, justifyContent: "space-between" }}>
               <View style={buttonStyle.Header}>
