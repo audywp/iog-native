@@ -101,6 +101,9 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
 
   scheduleUser = async () => {
     try {
+      this.setState({
+        loading: true
+      })
       const data = {
         agent: this.state.nameAgent,
         start: this.state.start,
@@ -109,7 +112,6 @@ export default connect(mapStateToProps, { UserDetail, TopUp, dataRoutes, Agents,
       console.log(data)
       await this.props.GetSchedules(data)
       this.props.navigation.navigate('Order')
-
     } catch (error) {
       console.log(error)
     }

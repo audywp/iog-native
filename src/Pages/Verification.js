@@ -34,7 +34,7 @@ const Verification = (props) => {
           <Text style={{
             fontFamily: 'Roboto',
             marginBottom: 10
-          }}>ahskjdhwja@gmail.com</Text>
+          }}>{props.route.params.email}</Text>
           <Text style={{
             fontFamily: 'Roboto',
             color: '#777',

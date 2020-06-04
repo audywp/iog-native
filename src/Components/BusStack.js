@@ -10,6 +10,7 @@ import { UserDetail } from '../Redux/Actions/User/UserDetail'
 import { connect } from 'react-redux'
 import LinearGradient from 'react-native-linear-gradient'
 import AsyncStorage from '@react-native-community/async-storage'
+import LoadingScreen from '../Components/LoadingScreen'
 
 const style = StyleSheet.create({
   cardBody: {
@@ -34,12 +35,16 @@ class Order extends Component {
       selectedBus: "bus0",
       selectedRoutesFrom: 'Route0',
       selectedRoutesTo: 'to0',
-      chosenDate: new Date()
+      chosenDate: new Date(),
+      loading: false
     };
   }
 
   makePurchase = async (id, price) => {
     try {
+      this.setState({
+        loading: true
+      })
       const idUser = await AsyncStorage.getItem('id')
       const data = {
         idSchedule: id
@@ -70,6 +75,9 @@ class Order extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      loading: false
+    })
     this.props.dataSchedule()
     console.log(this.props.data.data.result)
   }
@@ -78,6 +86,7 @@ class Order extends Component {
     if (this.props.scheduleUser.Schedules.schedule) {
       return (
         <>
+          {this.state.loading ? <LoadingScreen /> : null}
           <View horizontal={true} style={buttonStyle.Body}>
             <View style={{ flex: 1, justifyContent: "space-between" }}>
               <View style={buttonStyle.Header}>
