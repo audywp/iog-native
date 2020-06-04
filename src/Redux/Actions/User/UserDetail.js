@@ -10,10 +10,10 @@ const getToken = async () => {
   }
 }
 getToken()
-export const UserDetail = id => async dispatch => {
-  const res = await axios.get(Config.APP_BACKEND.concat(`user/detail/${id}`))
+export const UserDetail = () => async dispatch => {
+  const res = await axios.get(Config.APP_BACKEND.concat(`user/detail/`))
   try {
-    dispatch ({
+    dispatch({
       type: 'GET_USERDETAIL',
       payload: res.data
     })

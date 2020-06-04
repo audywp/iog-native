@@ -21,8 +21,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'Iog' do
-  # Pods for Iog
+target 'TravelIog' do
+  # Pods for TravelIog
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -62,7 +62,7 @@ target 'Iog' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
-  target 'IogTests' do
+  target 'TravelIogTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -79,10 +79,10 @@ target 'Iog' do
   end
 end
 
-target 'Iog-tvOS' do
-  # Pods for Iog-tvOS
+target 'TravelIog-tvOS' do
+  # Pods for TravelIog-tvOS
 
-  target 'Iog-tvOSTests' do
+  target 'TravelIog-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
