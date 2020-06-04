@@ -2,11 +2,12 @@
 
 const initialState = {
   data: {},
+  password: {},
   isLoading: false,
   isLogged: false
 }
 
-export default function isLogin(state = initialState, {type, payload}) {
+export default function isLogin(state = initialState, { type, payload }) {
   switch (type) {
     case 'IS_LOGIN': {
       return {
@@ -20,7 +21,7 @@ export default function isLogin(state = initialState, {type, payload}) {
       return {
         ...state,
         isLoading: true,
-        data: payload
+        password: payload
       };
     }
     case 'SET_LOGOUT': {

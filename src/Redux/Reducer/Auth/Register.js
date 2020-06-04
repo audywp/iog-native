@@ -3,7 +3,7 @@ const initialState = {
   isLoading: false,
 }
 
-export default function isRegister (state = initialState, {type, payload}){
+export default function isRegister(state = initialState, { type, payload }) {
   switch (type) {
     case 'SET_REGISTER':
       return {
@@ -11,10 +11,10 @@ export default function isRegister (state = initialState, {type, payload}){
         isLoading: true,
         data: payload
       }
-      
-  
+
+
     default:
-      return {...state};
+      return { ...state };
   }
 }
 

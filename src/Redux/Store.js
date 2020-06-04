@@ -18,6 +18,6 @@ const persistedReducer = persistReducer(config, allReducers)
 
 export const store = createStore(
   persistedReducer,
-  applyMiddleware(logger, thunk),
+  applyMiddleware(logger, thunk)
 );
 export let persistor = persistStore(store);

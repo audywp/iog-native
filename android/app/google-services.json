@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "401073920248",
+    "firebase_url": "https://iog-travel.firebaseio.com",
+    "project_id": "iog-travel",
+    "storage_bucket": "iog-travel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401073920248:android:abd315c0c367d0a6c0830d",
+        "android_client_info": {
+          "package_name": "com.iog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401073920248-0bqljftkunv45pka24je185vqrc2om2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq2DB6HjZUanWMg_phPcHTgFOpkE4cY7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401073920248-0bqljftkunv45pka24je185vqrc2om2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

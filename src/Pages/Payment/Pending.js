@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 
 //redux
@@ -7,17 +7,17 @@ import { connect } from 'react-redux'
 
 class Pending extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      dataPayment : []
+      dataPayment: []
     }
   }
 
   checkValidation = async (id, order_id) => {
     await this.props.ValidationPayment(order_id)
     await this.props.GetPaymentByOrderId(id).then(() => {
-      this.props.navigation.navigate('Status Payment')
+      this.props.navigation.navigate('Status Payment', order_id)
     })
   }
 
@@ -25,7 +25,7 @@ class Pending extends Component {
     await this.props.GetPayment()
   }
 
-  render () {
+  render() {
     return (
       <ScrollView directionalLockEnabled style={styles.container}>
         {this.props.history.results && this.props.history.results.map((result, i) => {
@@ -34,9 +34,9 @@ class Pending extends Component {
               <View style={result.status === 'Done' ? styles.DonePayment : styles.datePayment}>
                 <Text>{result.status}</Text>
               </View>
-      
+
               <View style={styles.descPayment}>
-      
+
                 <View style={styles.descLeft}>
                   <View style={styles.textDesc}>
                     <Text style={styles.title}>Name : </Text>
@@ -52,12 +52,12 @@ class Pending extends Component {
                   </View>
                   <View style={styles.textDesc}>
                     <Text style={styles.title}>Order Id : </Text>
-                    <Text> ... {result.order_id.slice(15,20)} </Text>
+                    <Text> ... {result.order_id.slice(15, 20)} </Text>
                   </View>
                 </View>
-      
+
                 <View style={styles.border}></View>
-      
+
                 <View style={styles.descRight}>
                   <View style={styles.textDesc}>
                     <Text style={styles.title}>Status : </Text>
@@ -69,16 +69,16 @@ class Pending extends Component {
                   </View>
                   <View style={styles.textDesc}>
                     <Text style={styles.title}>Date : </Text>
-                    <Text> {result.created_at.slice(0,10)} </Text>
+                    <Text> {result.created_at.slice(0, 10)} </Text>
                   </View>
                 </View>
-      
+
               </View>
             </TouchableOpacity>
           )
         })}
 
-        
+
       </ScrollView>
     )
   }
@@ -86,7 +86,7 @@ class Pending extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    history : state.TopUp.payment
+    history: state.TopUp.payment
   }
 }
 
@@ -94,7 +94,7 @@ const mapDispatchToProps = {
   ValidationPayment, GetPayment, GetPaymentByOrderId
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Pending)
+export default connect(mapStateToProps, mapDispatchToProps)(Pending)
 
 const styles = StyleSheet.create({
   container: {
